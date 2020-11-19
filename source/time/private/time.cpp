@@ -3,5 +3,6 @@
 #include <time/timers/syncedtimer.h>
 #include <time/timers/timer.h>
 #include <time/deltatime.h>
+#include <time/syncedtimersreference.h>
 #include <time/timereference.h>
 #include <time/timestamp.h>
