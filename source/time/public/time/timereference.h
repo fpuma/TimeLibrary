@@ -13,13 +13,18 @@ namespace puma
         TimeReference()
         {
             m_secondsRatio = ((double)(std::chrono::high_resolution_clock::period::num) / (double)(std::chrono::high_resolution_clock::period::den));
-            m_epochCountReference = m_highResClock.now().time_since_epoch().count();
+            reset();
         }
 
         double getElapsedSeconds()      const   { return (double)getElapsedCount() * m_secondsRatio; }
         double getElapsedMilliseconds() const   { return (double)getElapsedCount() * m_secondsRatio * 1000.0; }
         double getElapsedMicroseconds() const   { return (double)getElapsedCount() * m_secondsRatio * 1000000.0; }
         double getElapsedNanoseconds()  const   { return (double)getElapsedCount() * m_secondsRatio * 1000000000.0; }
+
+        void reset()
+        {
+            m_epochCountReference = m_highResClock.now().time_since_epoch().count();
+        }
 
     private:
 

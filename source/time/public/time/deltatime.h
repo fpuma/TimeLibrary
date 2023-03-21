@@ -15,8 +15,6 @@ namespace puma
     public:
 
         DeltaTime()
-            : m_timeReference()
-            , m_previousExecutionSeconds( m_timeReference.getElapsedSeconds() )
         {}
 
         virtual ~DeltaTime() = default;
@@ -33,6 +31,15 @@ namespace puma
 
             ++m_updateCount;
             m_averageDt += (m_currentDt - m_averageDt) / m_updateCount;
+        }
+
+        void reset()
+        {
+            m_timeReference.reset();
+            m_currentDt = 0.0f;
+            m_previousExecutionSeconds = 0.0;
+            m_averageDt = 0.0f;
+            m_updateCount = 0;
         }
 
     private:
